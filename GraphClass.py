@@ -642,7 +642,7 @@ class CausalGraph:
             for stat_index in range(len(stat_list)):
                 print(str_list[stat_index],
                       round(stat_list[stat_index], 3) if not np.isnan(stat_list[stat_index]) else None)
-                print("\n")
+            print("\n")
 
         return stat_list
 

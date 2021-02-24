@@ -9,7 +9,7 @@ import numpy as np
 #######################################################################################################################
 data_path = "test/test_data.txt"
 data = np.loadtxt(data_path, skiprows=1)                  # Import the file at data_path as data
-cg = pcAlgorithm(data, 0.3, "Fisher_Z", True, 2, -1)     # Run PC and obtain the estimated graph (CausalGraph object)
+cg = pcAlgorithm(data, 0.05, "Fisher_Z", True, 0, -1)     # Run PC and obtain the estimated graph (CausalGraph object)
 cg.rearrange(data_path)                                   # Rearrange the columns in accord with the order in the data
 
 #######################################################################################################################
@@ -17,14 +17,14 @@ cg.rearrange(data_path)                                   # Rearrange the column
 #######################################################################################################################
 cg.toNxGraph()
 cg.toNxSkeleton()
-# cg.printSummary()
+cg.printSummary()
 cg.drawNxGraph(skel=False)                                # Draw the estimated graph (or its skeleton)
 
 #######################################################################################################################
 ### Output the estimated graph as a TXT file which is readable by TETRAD ##############################################
 #######################################################################################################################
-# output_path = "test/test_output_graph.txt"
-# cg.toTetradTxt(output_path)
+output_path = "test/test_output_graph.txt"
+cg.toTetradTxt(output_path)
 
 #######################################################################################################################
 ### Obtain a subgraph #################################################################################################
@@ -36,12 +36,12 @@ cg.drawNxGraph(skel=False)                                # Draw the estimated g
 #######################################################################################################################
 ### Import the true DAG ###############################################################################################
 #######################################################################################################################
-# truth_path = "test/test_true_graph.txt"
-# truth = tetradToCausalGraph(truth_path)
+truth_path = "test/test_true_graph.txt"
+truth = tetradToCausalGraph(truth_path)
 
 #######################################################################################################################
 ### Obtain performance statistics by comparing the estimated graph with the true DAG (or true pattern) ################
 #######################################################################################################################
-# stat_list = cg.comparison(truth, compare_pattern = True, adj_only = False, uc_also = True, print_to_console = True)
+stat_list = cg.comparison(truth, compare_pattern = True, adj_only = False, uc_also = True, print_to_console = True)
 
 #######################################################################################################################
