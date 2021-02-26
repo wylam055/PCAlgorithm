@@ -465,6 +465,18 @@ class CausalGraph:
 
     ####################################################################################################################
 
+    def nxGraphToAdjmat(self):
+        """Convert nx_graph to adjmat"""
+        no_of_var = len(self.nx_graph.nodes)
+        assert no_of_var > 0
+        self.adjmat = np.zeros((no_of_var, no_of_var))
+        np.fill_diagonal(self.adjmat, None)
+
+        for (i, j) in self.nx_graph.edges:
+            self.addDirectedEdge(i, j)
+
+    ####################################################################################################################
+
     def toTetradTxt(self, PATH):
         """Convert adjmat into a text file (readable by TETRAD) output at PATH"""
         directed = self.findFullyDirected()
