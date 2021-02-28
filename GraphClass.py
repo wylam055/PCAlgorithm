@@ -471,6 +471,7 @@ class CausalGraph:
         assert no_of_var > 0
         self.adjmat = np.zeros((no_of_var, no_of_var))
         np.fill_diagonal(self.adjmat, None)
+        self.adjmat[self.adjmat == 0] = -1
 
         for (i, j) in self.nx_graph.edges:
             self.addDirectedEdge(i, j)
