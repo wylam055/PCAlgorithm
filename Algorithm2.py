@@ -139,7 +139,7 @@ def maxP(cg, priority=3):
 
 def definiteMaxP(cg, alpha, priority=4):
     """
-    Run (MaxP) or (Definite_MaxP) to orient unshielded colliders
+    Run (Definite_MaxP) to orient unshielded colliders
     :param cg: a CausalGraph object
     :param alpha: desired significance level in (0, 1) (float)
     :param priority: rule of resolving conflicts between unshielded colliders (default = 4)
