@@ -1,5 +1,5 @@
 #######################################################################################################################
-import Algorithm1, Algorithm2, Algorithm3, time
+import PC_Algorithm_Phase1, PC_Algorithm_Phase2, PC_Algorithm_Phase3, time
 #######################################################################################################################
 
 
@@ -27,29 +27,29 @@ def pcAlgorithm(data, alpha, test_name, stable, uc_rule, uc_priority):
     cg: a CausalGraph object
     """
     start = time.time()
-    cg_1 = Algorithm1.skeletonDiscovery(data, alpha, test_name, stable)
+    cg_1 = PC_Algorithm_Phase1.skeletonDiscovery(data, alpha, test_name, stable)
 
     if uc_rule == 0:
         if uc_priority != -1:
-            cg_2 = Algorithm2.uc_sepset(cg_1, uc_priority)
+            cg_2 = PC_Algorithm_Phase2.uc_sepset(cg_1, uc_priority)
         else:
-            cg_2 = Algorithm2.uc_sepset(cg_1)
-        cg = Algorithm3.Meek(cg_2)
+            cg_2 = PC_Algorithm_Phase2.uc_sepset(cg_1)
+        cg = PC_Algorithm_Phase3.Meek(cg_2)
 
     elif uc_rule == 1:
         if uc_priority != -1:
-            cg_2 = Algorithm2.maxP(cg_1, uc_priority)
+            cg_2 = PC_Algorithm_Phase2.maxP(cg_1, uc_priority)
         else:
-            cg_2 = Algorithm2.maxP(cg_1)
-        cg = Algorithm3.Meek(cg_2)
+            cg_2 = PC_Algorithm_Phase2.maxP(cg_1)
+        cg = PC_Algorithm_Phase3.Meek(cg_2)
 
     elif uc_rule == 2:
         if uc_priority != -1:
-            cg_2 = Algorithm2.definiteMaxP(cg_1, alpha, uc_priority)
+            cg_2 = PC_Algorithm_Phase2.definiteMaxP(cg_1, alpha, uc_priority)
         else:
-            cg_2 = Algorithm2.definiteMaxP(cg_1, alpha)
-        cg_before = Algorithm3.definite_Meek(cg_2)
-        cg = Algorithm3.Meek(cg_before)
+            cg_2 = PC_Algorithm_Phase2.definiteMaxP(cg_1, alpha)
+        cg_before = PC_Algorithm_Phase3.definite_Meek(cg_2)
+        cg = PC_Algorithm_Phase3.Meek(cg_before)
     end = time.time()
 
     cg.PC_elapsed = end - start
