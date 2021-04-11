@@ -24,6 +24,7 @@ class CausalGraph:
         self.definite_non_UC = []  # store the list of definite unshielded non-colliders
         self.PC_elapsed = -1  # store the elapsed time of running PC
         self.redundant_nodes = []  # store the list of redundant nodes (for subgraphs)
+        self.score = 0 # store the score (e.g., BIC)
 
     ####################################################################################################################
 
