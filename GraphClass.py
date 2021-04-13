@@ -20,6 +20,7 @@ class CausalGraph:
         self.cov_mat = None # store the covariance matrix of the data
         self.nx_graph = nx.DiGraph()  # store the directed graph
         self.nx_skel = nx.Graph()  # store the undirected graph
+        self.sample_size = 0 # store the sample size
         self.sepset = np.empty((no_of_var, no_of_var), object)  # store the collection of sepsets
         self.definite_UC = []  # store the list of definite unshielded colliders
         self.definite_non_UC = []  # store the list of definite unshielded non-colliders
