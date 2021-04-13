@@ -17,6 +17,7 @@ class CausalGraph:
         self.data = None  # store the data
         self.test = str()  # store the name of the conditional independence test
         self.corr_mat = None  # store the correlation matrix of the data
+        self.cov_mat = None # store the covariance matrix of the data
         self.nx_graph = nx.DiGraph()  # store the directed graph
         self.nx_skel = nx.Graph()  # store the undirected graph
         self.sepset = np.empty((no_of_var, no_of_var), object)  # store the collection of sepsets
