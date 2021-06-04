@@ -414,6 +414,7 @@ class CausalGraph:
 
     def toNxGraph(self):
         """Convert adjmat into a networkx.Digraph object named nx_graph"""
+        self.nx_graph = nx.DiGraph()
         nodes = range(len(self.adjmat))
         self.nx_graph.add_nodes_from(nodes)
         undirected = self.findUndirected()
