@@ -732,9 +732,10 @@ def tetradToCausalGraph(path):
 
 #######################################################################################################################
 
-def toPattern(cg):
+def toPattern(cg, checkDAG = True):
     """Convert cg (a Causal Graph object) to its pattern [Throw an error if cg.nx_graph is not a DAG]"""
-    assert cg.isDag()
+    if checkDAG:
+        assert cg.isDag()
     cg_pattern = deepcopy(cg)
     cg_pattern.adjmat[cg_pattern.adjmat == 1] = 0  # remove all arrowheads to obtain the skeleton
 
