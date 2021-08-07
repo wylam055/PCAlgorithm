@@ -57,7 +57,7 @@ def pMinM2FruTester(true_cg, data, test_name, alpha, **kwargs):
             for (j, k) in combinations(nodes, 2): # j < k guaranteed
                 pi_j = pi[j]
                 pi_k = pi[k]
-                pi_cond_set = pi[0:j] + pi[j+1:k]
+                pi_cond_set = tuple(sorted(pi[0:j] + pi[j+1:k]))
                 if (pi_j, pi_k, pi_cond_set) in CI_facts:
                     continue
                 elif (pi_j, pi_k, pi_cond_set) in CD_facts:
@@ -67,9 +67,11 @@ def pMinM2FruTester(true_cg, data, test_name, alpha, **kwargs):
                     p = true_cg.ci_test(pi_j, pi_k, pi_cond_set)
                     if p > alpha:
                         CI_facts.append([pi_j, pi_k, pi_cond_set])
+                        CI_facts.append([pi_k, pi_j, pi_cond_set])
                         continue
                     else:
                         CD_facts.append([pi_j, pi_k, pi_cond_set])
+                        CD_facts.append([pi_k, pi_j, pi_cond_set])
                         pi_edges.append((pi_j, pi_k))
                         continue
             return pi_edges
